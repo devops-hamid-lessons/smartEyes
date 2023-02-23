@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package smartEyes;
+
+enum Chain{
+    INPUT = 0;
+    OUTPUT = 1;
+    FORWARD = 2;
+}
+enum Action{
+    ACCEPT=0;
+    DROP=1;
+}
+message ListRulesRequest {
+    Chain chain = 1;
+}
+
+message Rule {
+    string rule_id = 1;
+    Action action = 2;
+    Chain chain = 3;
+    string source = 4;
+    int32 source_cidr = 5;
+    string destination = 6;
+    int32 destination_cidr = 7;
+    int32 dport = 8;
+    int32 sport = 9;
+    string protocol =10;
+}
+message RuleSet{
+    repeated Rule rules = 1;
+}
+message StringResponse{
+    string message = 1;
+}
+message Empty{}
+
+
+service SmartEyesRPC {
+    rpc ListRules (ListRulesRequest) returns (RuleSet) {}
+    rpc Flush(Empty) returns (StringResponse) {}
+    rpc StartPacketHandler(Empty) returns (StringResponse) {}
+    rpc StopPacketHandler(Empty) returns (StringResponse) {}
+}
