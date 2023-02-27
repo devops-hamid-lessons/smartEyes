@@ -14,7 +14,7 @@ SmartEyes is a skeleton project to create a portable softwarized Network Packet 
 
 Requirement         | Specification
 ------------------- | --------------------------------------
-OS                  | Ubuntu (All Versions)
+OS                  | Ubuntu (all versions)
 Language            | Python, bash
 Interpreter         | Python 3.7
 
